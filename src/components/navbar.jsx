@@ -23,7 +23,7 @@ const Navbar = () => {
         <li><Link to="/scanner" className="hover:text-green-600">Scanner</Link></li>
         <li><Link to="/ml1" className="hover:text-green-600">ML1</Link></li>
         <li><Link to="/ml2" className="hover:text-green-600">ML2</Link></li>
-        <li><Link to="/logout" className="hover:text-red-600">Logout</Link></li>
+        <li><Link to="/login" className="hover:text-red-600">Logout</Link></li>
       </ul>
 
       {/* Hamburger Icon */}
@@ -39,7 +39,7 @@ const Navbar = () => {
             <li><Link to="/scanner" onClick={closeMenu} className="hover:text-green-600">Scanner</Link></li>
             <li><Link to="/ml1" onClick={closeMenu} className="hover:text-green-600">ML1</Link></li>
             <li><Link to="/ml2" onClick={closeMenu} className="hover:text-green-600">ML2</Link></li>
-            <li><Link to="/logout" onClick={closeMenu} className="hover:text-red-600">Logout</Link></li>
+            <li><Link to="/login" onClick={closeMenu} className="hover:text-red-600">Logout</Link></li>
           </ul>
         </div>
       )}
