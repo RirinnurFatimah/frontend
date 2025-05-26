@@ -1,15 +1,19 @@
 import React from 'react'
 import ScanHome from '../layout/scan_home';
-import logo from '../assets/logo2.jpg';
+import logo from '../assets/logo.jpg';
+import MiddleHome from '../layout/middlehome';
+import Navbar from './navbar';
 const Home = () => {
   return (
+   
     <>
+    <Navbar />
     <section className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-[#A6E3E8] px-6 py-12 gap-12">
       {/* Kiri - Logo */}
       <div className="flex justify-center md:w-1/2">
-        <div className="bg-[#71C9CD] p-6 rounded-xl shadow-md">
-          <img src={logo} alt="NutriVision Logo" className="w-48 md:w-64" />
-        </div>
+        {/* <div className="bg-[#71C9CD] p-6 rounded-xl shadow-md"> */}
+          <img src={logo} alt="NutriVision Logo" className="w-64 md:w-96 rounded-tr-4xl rounded-bl-4xl" />
+        {/* </div> */}
       </div>
 
 
@@ -25,6 +29,8 @@ const Home = () => {
         </a>
       </div>
     </section>
+
+    <MiddleHome />
 
     <ScanHome />
     </>

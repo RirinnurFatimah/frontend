@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import Logo from '../assets/logo2.jpg';
+import Logo from '../assets/logo.jpg';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,8 +21,8 @@ const Navbar = () => {
       <ul className="hidden md:flex space-x-6 text-black font-medium">
         <li><Link to="/" className="hover:text-green-600">Home</Link></li>
         <li><Link to="/scanner" className="hover:text-green-600">Scanner</Link></li>
-        <li><Link to="/ml1" className="hover:text-green-600">ML1</Link></li>
-        <li><Link to="/ml2" className="hover:text-green-600">ML2</Link></li>
+        <li><Link to="/BodyTrack" className="hover:text-green-600">BodyTrack</Link></li>
+        <li><Link to="/NutriTrack" className="hover:text-green-600">NutriTrack</Link></li>
         <li><Link to="/login" className="hover:text-red-600">Logout</Link></li>
       </ul>
 
