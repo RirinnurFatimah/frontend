@@ -1,40 +1,104 @@
-import React from 'react'
-import ScanHome from '../layout/scan_home';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
-import MiddleHome from '../layout/middlehome';
 import Navbar from './navbar';
-const Home = () => {
+
+const Homepage = () => {
+  const features = [
+    {
+      img: logo,
+      text: 'Banyak orang kesulitan mengatur asupan nutrisi harian secara efektif.',
+    },
+    {
+      img: logo,
+      text: 'Informasi gizi pada makanan kemasan sering kali tidak jelas atau membingungkan.',
+    },
+    {
+      img: logo,
+      text: 'Sulit menentukan porsi makan yang sesuai dengan tujuan—baik itu menurunkan berat badan, menjaga, atau menambah massa tubuh.',
+    },
+  ];
+
   return (
-   
     <>
-    <Navbar />
-    <section className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-[#A6E3E8] px-6 py-12 gap-12">
-      {/* Kiri - Logo */}
-      <div className="flex justify-center md:w-1/2">
-        {/* <div className="bg-[#71C9CD] p-6 rounded-xl shadow-md"> */}
-          <img src={logo} alt="NutriVision Logo" className="w-64 md:w-96 rounded-tr-4xl rounded-bl-4xl" />
-        {/* </div> */}
-      </div>
+      {/* Navbar (Jika kamu punya komponen Navbar, import dan pasang di sini) */}
+      <Navbar />
 
-
-      {/* Kanan - Teks dan Tombol */}
-      <div className="flex flex-col items-center text-center md:text-right md:w-1/2 space-y-4 md:pr-20 lg:pr-20">
-        <h1 className="text-7xl md:text-8xl font-extrabold text-[#85C125] ">NutriVision</h1>
-        <p className="text-5xl font-bold text-black mb-6">Scan Your Food, Shape Your Health</p>
-        <p className="text-3xl font-medium text-gray-700 mb-8">
-          Take control of your nutrition with smart and personalized guidance.
+      {/* Hero Section */}
+      <section className="h-[70vh] flex flex-col items-center justify-start bg-[#A6E3E8] text-center px-4 pt-24 space-y-6">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-black">
+          WELCOME TO <span className="text-green-700">NUTRIVISION</span>
+        </h1>
+        <p className="text-xl md:text-2xl font-semibold text-black">
+          Scan Your Food, Shape Your Health
         </p>
-        <a href="#scanhome" className="mt-4 px-6 py-3 bg-black text-white font-bold rounded-xl text-lg hover:bg-[#3b4160] transition duration-200 mx-auto">
-          Get Started
-        </a>
-      </div>
-    </section>
+        <blockquote className="text-lg md:text-xl text-black italic max-w-3xl">
+          "Every time you eat or drink, you are either feeding disease or fighting it."
+          <br />
+          <span className="not-italic text-sm md:text-base font-medium block mt-2">
+            — Heather Morgan, Nutritionist dan Health Strategist
+          </span>
+        </blockquote>
+      </section>
 
-    <MiddleHome />
+      {/* Middle Feature Section */}
+      <section className="bg-[#A6E3E8] py-16 px-6 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-12">
+          Mengapa <span className="text-[#85C125]">NUTRIVISION</span> ?
+        </h2>
 
-    <ScanHome />
+        <div className="grid md:grid-cols-3 gap-12 mb-12 max-w-6xl mx-auto">
+          {features.map((item, index) => (
+            <div key={index} className="flex flex-col items-center">
+              <img
+                src={item.img}
+                alt={`Illustration ${index + 1}`}
+                className="w-48 h-48 object-contain rounded-full mb-6"
+              />
+              <p className="text-gray-800 text-sm md:text-base max-w-xs">
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <h2 className="text-3xl md:text-4xl font-bold mb-12">
+          Bagaimana <span className="text-[#85C125]">NUTRIVISION</span> Membantu kamu?
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+          {features.map((item, index) => (
+            <div key={index} className="flex flex-col items-center">
+              <img
+                src={item.img}
+                alt={`Illustration ${index + 1}`}
+                className="w-48 h-48 object-contain rounded-full mb-6"
+              />
+              <p className="text-gray-800 text-sm md:text-base max-w-xs">
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Scan Section */}
+      <section
+        id="scanhome"
+        className="min-h-screen flex flex-col items-center justify-center bg-[#A6E3E8] text-center px-4 space-y-20"
+      >
+        <h1 className="text-6xl md:text-7xl font-extrabold text-black">
+          Saatnya Peduli Dengan Apa Yang Kamu Konsumsi
+        </h1>
+        <Link
+          to="/scanner"
+          className="bg-[#3A7D44] text-white px-6 py-3 rounded-xl text-lg font-bold hover:bg-[#6ca31f] transition duration-200"
+        >
+          Scan Makananmu Hari Ini
+        </Link>
+      </section>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Homepage;

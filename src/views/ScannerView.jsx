@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { getProductDetails } from '../presenter/scannerPresenter';
 import Quagga from 'quagga';
 import Navbar from '../components/navbar';
+import Footer from '../components/Footer';
 
 const ScannerView = () => {
   const [previewImage, setPreviewImage] = useState(null);
@@ -154,15 +155,15 @@ const ScannerView = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-[#A0E0E8] py-6 px-4 flex flex-col items-center">
-        <h1 className="text-2xl font-bold text-[#2F4F4F] mb-1">NUTRIVISION</h1>
-        <p className="text-sm text-gray-700 mb-4 text-center">Scan Your Nutrition Here!</p>
+      <div className="min-h-screen bg-[#A0E0E8] mt-14 py-6 px-4 flex flex-col items-center">
+        <h1 className="text-2xl font-extrabold text-[#2F4F4F] mb-6">NUTRIVISION</h1>
+        <p className="text-sm font-semibold text-gray-700 mb-4 text-center">Scan Your Nutrition Here!</p>
 
         <div className="bg-[#71C9CD] border-5 border-white p-4 rounded-xl w-full max-w-4xl mb-6">
-          <p className="text-center font-semibold text-sm mb-2">Choose Your Goals</p>
+          <p className="text-center font-semibold text-2xl mb-5">Choose Your Goals</p>
           <div className="flex justify-around">
             {['sugar', 'fat', 'carbs'].map((item) => (
-              <label key={item} className="flex flex-col items-center text-xs text-[#333]">
+              <label key={item} className="flex flex-col items-center text-sm font-semibold text-[#333]">
                 {item === 'sugar' && 'Gula/Gukosa'}
                 {item === 'fat' && 'Kolesterol'}
                 {item === 'carbs' && 'Karbohidrat'}
@@ -185,8 +186,8 @@ const ScannerView = () => {
           autoPlay
         ></video>
 
-        <div className="flex flex-col items-center gap-3 mb-6">
-          <label className="cursor-pointer bg-[#F7F2CC] px-6 py-2 rounded-full text-sm font-bold">
+        <div className="flex flex-col items-center gap-4 mb-6">
+          <label className="cursor-pointer text-white bg-[#3A7D44] px-6 py-2 rounded-2xl text-sm font-bold">
             Upload From Your Gallery
             <input
               type="file"
@@ -198,9 +199,9 @@ const ScannerView = () => {
 
           <button
             onClick={handleScan}
-            className="bg-[#F7F2CC] px-6 py-2 rounded-full text-sm font-bold"
+            className="bg-[#3A7D44] text-white px-6 py-2 rounded-full text-sm font-bold"
           >
-            Scan
+            Scan Now
           </button>
         </div>
 
@@ -213,7 +214,7 @@ const ScannerView = () => {
 
         <div className="w-full max-w-4xl">
           <div className="text-left mb-4">
-            <h2 className="font-semibold text-sm mb-1">Kandungan Nutrisi</h2>
+            <h2 className="font-bold text-sm mb-1">Kandungan Nutrisi</h2>
             <textarea
               className="w-full h-[220px] p-4 mt-1 bg-red-50 rounded-md text-sm resize-none"
               readOnly
@@ -222,7 +223,7 @@ const ScannerView = () => {
           </div>
 
           <div className="text-left">
-            <h2 className="font-semibold text-sm mb-1">Result</h2>
+            <h2 className="font-bold text-sm mb-1">Result</h2>
             <textarea
               className="w-full h-[160px] p-4 mt-1 bg-white rounded-md text-sm resize-none"
               readOnly
@@ -231,6 +232,7 @@ const ScannerView = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
