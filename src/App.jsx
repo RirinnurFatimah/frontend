@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Landing from './components/landing';
 import Navbar from './components/navbar';
 import Home from './components/home';
 import Scanner from './views/ScannerView';
