@@ -1,27 +1,48 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.jpg';
 import Navbar from './navbar';
+import Footer from './Footer';
+import Img_1 from '../assets/img/img_1.jpg';
+import Img_2 from '../assets/img/img_2.jpg';
+import Img_3 from '../assets/img/img_3.jpg';
+import Img_4 from '../assets/img/img_4.jpg';
+import Img_5 from '../assets/img/img_5.jpg';
+import Img_6 from '../assets/img/img_6.jpg';
 
 const Homepage = () => {
-  const features = [
+  const featuresWhy = [
     {
-      img: logo,
+      img: Img_1,
       text: 'Banyak orang kesulitan mengatur asupan nutrisi harian secara efektif.',
     },
     {
-      img: logo,
+      img: Img_2,
       text: 'Informasi gizi pada makanan kemasan sering kali tidak jelas atau membingungkan.',
     },
     {
-      img: logo,
+      img: Img_3,
       text: 'Sulit menentukan porsi makan yang sesuai dengan tujuan—baik itu menurunkan berat badan, menjaga, atau menambah massa tubuh.',
+    }
+  ];
+
+  const featuresHow = [
+    {
+      img: Img_4,
+      text: 'Scan makanan anda lihat apakah makanan tersebut baik untuk anda',
     },
+    {
+      img: Img_5,
+      text: 'Input data pribadi -> Sistem akan deteksi berat badan anda',
+    },
+    {
+      img: Img_6,
+      text: 'Sistem juga akan merekomendasikan makanan sesuai dengan kebutuhan nutrisi anda',
+    }
   ];
 
   return (
     <>
-      {/* Navbar (Jika kamu punya komponen Navbar, import dan pasang di sini) */}
+      {/* Navbar */}
       <Navbar />
 
       {/* Hero Section */}
@@ -41,18 +62,18 @@ const Homepage = () => {
         </blockquote>
       </section>
 
-      {/* Middle Feature Section */}
+      {/* Feature Section */}
       <section className="bg-[#A6E3E8] py-16 px-6 text-center">
+        {/* Mengapa Nutrivision */}
         <h2 className="text-3xl md:text-4xl font-bold mb-12">
           Mengapa <span className="text-[#85C125]">NUTRIVISION</span> ?
         </h2>
-
         <div className="grid md:grid-cols-3 gap-12 mb-12 max-w-6xl mx-auto">
-          {features.map((item, index) => (
+          {featuresWhy.map((item, index) => (
             <div key={index} className="flex flex-col items-center">
               <img
                 src={item.img}
-                alt={`Illustration ${index + 1}`}
+                alt={`Illustration Why ${index + 1}`}
                 className="w-48 h-48 object-contain rounded-full mb-6"
               />
               <p className="text-gray-800 text-sm md:text-base max-w-xs">
@@ -62,16 +83,16 @@ const Homepage = () => {
           ))}
         </div>
 
+        {/* Bagaimana Nutrivision Membantu */}
         <h2 className="text-3xl md:text-4xl font-bold mb-12">
           Bagaimana <span className="text-[#85C125]">NUTRIVISION</span> Membantu kamu?
         </h2>
-
         <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-          {features.map((item, index) => (
+          {featuresHow.map((item, index) => (
             <div key={index} className="flex flex-col items-center">
               <img
                 src={item.img}
-                alt={`Illustration ${index + 1}`}
+                alt={`Illustration How ${index + 1}`}
                 className="w-48 h-48 object-contain rounded-full mb-6"
               />
               <p className="text-gray-800 text-sm md:text-base max-w-xs">
@@ -82,7 +103,7 @@ const Homepage = () => {
         </div>
       </section>
 
-      {/* Scan Section */}
+      {/* Scan Call to Action Section */}
       <section
         id="scanhome"
         className="min-h-screen flex flex-col items-center justify-center bg-[#A6E3E8] text-center px-4 space-y-20"
@@ -97,6 +118,7 @@ const Homepage = () => {
           Scan Makananmu Hari Ini
         </Link>
       </section>
+      <Footer></Footer>
     </>
   );
 };
