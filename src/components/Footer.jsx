@@ -3,30 +3,33 @@ import { FaInstagram, FaEnvelope } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#71C9CD] text-green-900 w-full px-6 py-6">
-      {/* Kontainer utama */}
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
-        {/* Kiri - Logo dan ikon */}
-        <div className="text-center md:text-left mb-4 md:mb-0">
+    <footer className="bg-[#71C9CD] text-green-900 w-full px-4 py-6">
+      {/* Container dengan lebar maksimum yang sedang */}
+      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center text-center md:text-left gap-4">
+        {/* Left Section */}
+        <div className="mb-4 md:mb-0">
           <h1 className="text-base font-bold tracking-wide">NUTRIVISION</h1>
           <p className="text-xs tracking-widest mt-1">SCAN YOUR FOOD</p>
           <p className="text-xs tracking-widest">SHAPE YOUR HEALTH</p>
-          <div className="flex justify-center md:justify-start space-x-4 mt-2">
-            <a href="#" aria-label="Instagram"><FaInstagram size={16} /></a>
-            <a href="#" aria-label="Email"><FaEnvelope size={16} /></a>
+          <div className="flex justify-center md:justify-start space-x-3 mt-3 text-green-900">
+            <a href="#" aria-label="Instagram"><FaInstagram size={18} /></a>
+            <a href="#" aria-label="Email"><FaEnvelope size={18} /></a>
           </div>
         </div>
 
-        {/* Tengah - Teks pembuat */}
-        <div className="text-center">
-          <p className="text-black font-bold text-sm">
-            CREATED BY <span className="text-green-800 font-bold">NUTRIVISION TEAM</span>
+        {/* Center Section */}
+        <div className="mb-2 md:mb-0 flex justify-center">
+          <p className="text-black font-semibold text-center text-sm leading-tight">
+            CREATED BY <span className="text-green-800 font-medium">NUTRIVISION TEAM</span>
           </p>
         </div>
+
+        {/* Right Section kosong untuk spacing */}
+        <div></div>
       </div>
 
-      {/* Bawah - Teks hak cipta */}
-      <div className="mt-4 text-center text-xs text-black tracking-tight">
+      {/* Bottom Text */}
+      <div className="mt-6 text-center text-xs text-black max-w-4xl mx-auto tracking-tight">
         © 2025 Nutrivision by Team CC25-CF220. All rights reserved.
       </div>
     </footer>
