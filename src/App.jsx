@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Landing from './components/landing'
 import Navbar from './components/navbar';
 import Home from './components/home';
 import Scanner from './views/ScannerView';
@@ -16,8 +15,8 @@ const App = () => {
       {/* <Navbar /> */}
       <main className="">
         <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/landing" element={<Landing />} />
+          <Route path="/" element={<Home />} />
           <Route path="/scanner" element={<Scanner />} />
           <Route path="/BodyTrack" element={<BodyTrack />} />
           <Route path="/NutriTrack" element={<NutriTrack />} />

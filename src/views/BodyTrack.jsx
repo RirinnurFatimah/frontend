@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { processBodyData } from '../presenter/BodyTrackPresenter';
 import Navbar from '../components/navbar';
-import Footer from '../components/Footer';
 
 const BodyTrack = () => {
   const [formData, setFormData] = useState({
@@ -128,7 +127,6 @@ const BodyTrack = () => {
         )}
       </div>
     </div>
-    <Footer></Footer>
     </>
   );
 };

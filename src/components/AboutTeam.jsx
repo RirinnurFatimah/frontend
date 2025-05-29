@@ -7,6 +7,7 @@ import RensaImg from '../assets/profil/Rensa_Ayu_Lestari.jpg';
 import RirinImg from '../assets/profil/Ririn_Nur_Fatimah.jpg';
 import SusiImg from '../assets/profil/Susi_Angelina.jpg';
 import LogoImg from '../assets/LOGO1.png';
+import Footer from './Footer';
 
 const teamMembers = [
   {
