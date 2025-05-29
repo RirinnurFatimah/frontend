@@ -22,7 +22,7 @@ const teamMembers = [
     role: 'Machine Learning (ML)',
     university: 'Universitas Andalas',
     image: RensaImg,
-    linkedin: 'https://linkedin.com/in/rensa-ayu-lestari',
+    linkedin: 'https://www.linkedin.com/in/rensa-ayu-lestari-780287300/',
     instagram: 'https://www.instagram.com/rensaayulestari?igsh=MXY3cDNudXBjejB5eA==',
   },
   {

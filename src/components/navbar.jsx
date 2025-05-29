@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaBars, FaTimes, FaUserCircle } from 'react-icons/fa';
 import Logo from '../assets/logo.jpg';
 import Sidebar from '../layout/Sidebar';
+import Footer from './Footer';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +64,7 @@ const Navbar = () => {
             <li><Link to="/scanner" onClick={closeMenu} className="hover:text-green-200">Scanner</Link></li>
             <li><Link to="/BodyTrack" onClick={closeMenu} className="hover:text-green-200">BodyTrack</Link></li>
             <li><Link to="/NutriTrack" onClick={closeMenu} className="hover:text-green-200">NutriTrack</Link></li>
-            <li><Link to="/AboutTeam" onClick={closeMenu} className="hover:text-green-200">AboutTeam</Link></li>
+            <li><Link to="/about-team" onClick={closeMenu} className="hover:text-green-200">AboutTeam</Link></li>
             <li><Link to="/login" onClick={closeMenu} className="hover:text-green-200">Profile</Link></li>
           </ul>
         </div>
@@ -71,6 +72,7 @@ const Navbar = () => {
 
       {/* Sidebar Profile */}
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+        <Footer></Footer>
     </>
   );
 };
