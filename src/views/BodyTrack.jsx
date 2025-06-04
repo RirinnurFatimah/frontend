@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { processBodyData } from '../presenter/BodyTrackPresenter';
 import Navbar from '../components/navbar';
+import axios from 'axios';
 
 const BodyTrack = () => {
   const [formData, setFormData] = useState({
@@ -21,17 +22,64 @@ const BodyTrack = () => {
     setFormData({ ...formData, activityLevel: Number(e.target.value) });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const parsedData = {
-      ...formData,
-      age: Number(formData.age),
-      height: Number(formData.height),
-      weight: Number(formData.weight),
-    };
-    const resultData = processBodyData(parsedData);
-    setResult(resultData);
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     const parsedData = {
+//   age: Number(formData.age),
+//   gender: formData.gender,
+//   height_cm: Number(formData.height),
+//   weight_kg: Number(formData.weight),
+//   activity: Number(formData.activityLevel),
+// };
+    
+//     try{
+//     const response = await axios.post('http://127.0.0.1:5000/predict', parsedData);
+
+//       if (!response.ok) {
+//         throw new Error('Gagal menghubungi API');
+//       }
+
+//        const bmi = parsedData.weight_kg / ((parsedData.height_cm / 100) ** 2);
+//       setResult({
+//       bmi: bmi.toFixed(2),
+//       category: response.data.predicted_label,
+//     });
+//     }  catch (error) {
+//       console.error('Error fetching data:', error);
+//       setResult({
+//         bmi: 'N/A',
+//         category: 'Terjadi kesalahan saat memproses data',
+//       });
+//     }
+//   };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const parsedData = {
+    age: Number(formData.age),
+    height_cm: Number(formData.height),
+    weight_kg: Number(formData.weight),
+    gender: formData.gender,
+    activity: Number(formData.activityLevel),
   };
+
+  try {
+    const response = await axios.post('http://127.0.0.1:5000/predict', parsedData);
+    console.log('Response dari API:', response.data);
+    const data = response.data;
+    setResult({
+      predictedLabel: data.predicted_label,
+      predictedClass: data.predicted_class,
+    });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    setResult({
+      predictedLabel: 'Terjadi kesalahan saat memproses data',
+      predictedClass: 'N/A',
+    });
+  }
+};
 
   return (
     <>
@@ -49,46 +97,73 @@ const BodyTrack = () => {
         <div className="bg-white max-w-xl w-full p-8 rounded-3xl shadow-lg">
           <h2 className="text-center text-2xl font-semibold mb-6 text-[#2F4F4F]">Input Your Body Track</h2>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-sm">
-            <input
-              type="number"
-              name="age"
-              placeholder="Umur"
-              value={formData.age}
-              onChange={handleChange}
-              className="bg-[#DDF7FA] p-2 rounded-md focus:outline-none"
-            />
-            <input
-              type="number"
-              name="height"
-              placeholder="Tinggi Badan"
-              value={formData.height}
-              onChange={handleChange}
-              className="bg-[#DDF7FA] p-2 rounded-md focus:outline-none"
-            />
-            <input
-              type="number"
-              name="weight"
-              placeholder="Berat Badan"
-              value={formData.weight}
-              onChange={handleChange}
-              className="bg-[#DDF7FA] p-2 rounded-md focus:outline-none"
-            />
-            <input
-              type="text"
-              name="gender"
-              placeholder="Gender"
-              value={formData.gender}
-              onChange={handleChange}
-              className="bg-[#DDF7FA] p-2 rounded-md focus:outline-none"
-            />
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-sm text-gray-700">
+  {/* Umur */}
+  <div className="flex flex-col">
+    <label htmlFor="age" className="mb-1 font-medium">Umur</label>
+    <input
+      type="number"
+      name="age"
+      id="age"
+      placeholder="Masukkan umur"
+      value={formData.age}
+      onChange={handleChange}
+      className="bg-[#DDF7FA] p-2 rounded-md focus:outline-none"
+    />
+  </div>
+
+  {/* Tinggi Badan */}
+  <div className="flex flex-col">
+    <label htmlFor="height" className="mb-1 font-medium">Tinggi Badan (cm)</label>
+    <input
+      type="number"
+      name="height"
+      id="height"
+      placeholder="Masukkan tinggi badan"
+      value={formData.height}
+      onChange={handleChange}
+      className="bg-[#DDF7FA] p-2 rounded-md focus:outline-none"
+    />
+  </div>
+
+  {/* Berat Badan */}
+  <div className="flex flex-col">
+    <label htmlFor="weight" className="mb-1 font-medium">Berat Badan (kg)</label>
+    <input
+      type="number"
+      name="weight"
+      id="weight"
+      placeholder="Masukkan berat badan"
+      value={formData.weight}
+      onChange={handleChange}
+      className="bg-[#DDF7FA] p-2 rounded-md focus:outline-none"
+    />
+  </div>
+
+  {/* Gender */}
+  <div className="flex flex-col">
+    <label htmlFor="gender" className="mb-1 font-medium">Gender</label>
+    <select
+      name="gender"
+      id="gender"
+      value={formData.gender}
+      onChange={handleChange}
+      className="bg-[#DDF7FA] p-2 rounded-md focus:outline-none"
+    >
+      <option value="">Pilih Gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+  </div>
+
+
 
             <div>
               <label className="block text-center font-medium text-sm mb-1 mt-3">Level Aktifitas</label>
               <input
                 type="range"
                 name="activityLevel"
-                min="1"
+                min="0"
                 max="4"
                 value={formData.activityLevel}
                 onChange={handleActivityChange}
@@ -115,17 +190,44 @@ const BodyTrack = () => {
 
 
       {/* Result Box (DI LUAR FORM) */}
-      <div className="bg-blue-50 border border-blue-200 p-4 rounded-md shadow-inner mt-6 max-w-xl mx-auto min-h-[100px]">
-        <h3 className="font-semibold text-teal-800 text-lg mb-2">Result</h3>
-        {result ? (
-          <>
-            <p className="text-sm">BMI: <span className="font-semibold">{result.bmi}</span></p>
-            <p className="text-sm">Kategori: <span className="font-semibold">{result.category}</span></p>
-          </>
-        ) : (
-          <p className="text-gray-500 text-sm italic">Hasil akan ditampilkan di sini setelah kamu submit.</p>
-        )}
-      </div>
+<div className="bg-blue-50 border border-blue-200 p-4 rounded-md shadow-inner mt-6 max-w-xl mx-auto min-h-[100px]">
+  <h3 className="font-semibold text-teal-800 text-lg mb-2">Result</h3>
+  {result ? (
+    <>
+      <p className="text-sm mb-2">
+        Hasil Deteksi: <span className="font-semibold">{result.predictedLabel}</span>
+      </p>
+
+      {result.predictedLabel === "Obese" && (
+        <p className="text-sm text-red-700">
+          Saran: Disarankan untuk rutin berolahraga minimal 30 menit per hari, menghindari makanan tinggi lemak dan gula, serta konsultasi dengan ahli gizi untuk pola makan sehat.
+        </p>
+      )}
+
+      {result.predictedLabel === "Overweight" && (
+        <p className="text-sm text-orange-700">
+          Saran: Mulailah meningkatkan aktivitas fisik, seperti berjalan kaki atau bersepeda, serta kurangi konsumsi makanan cepat saji dan minuman manis.
+        </p>
+      )}
+
+      {result.predictedLabel === "Underweight" && (
+        <p className="text-sm text-yellow-700">
+          Saran: Tingkatkan asupan kalori sehat, konsumsi makanan kaya protein dan karbohidrat kompleks, serta periksa kemungkinan kondisi medis tertentu.
+        </p>
+      )}
+
+      {result.predictedLabel === "Normal weight" && (
+        <p className="text-sm text-green-700">
+          Saran: Pertahankan pola makan bergizi seimbang dan gaya hidup aktif agar kesehatan tetap terjaga.
+        </p>
+      )}
+    </>
+  ) : (
+    <p className="text-gray-500 text-sm italic">
+      Hasil akan ditampilkan di sini setelah kamu submit.
+    </p>
+  )}
+</div>
     </div>
     </>
   );
