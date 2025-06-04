@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
+import Logo from '../assets/LOGO1.png'; 
 
 const Register = () => {
   return (
-    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-[#a0e3f0] px-4 py-10">
+    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-[#A6E3E8] px-4 py-10">
 
       <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
         <img
-          src="/src/assets/LOGO1.png"
+          src={Logo}
           alt="Nutrivision Logo"
           className="w-[250px] md:w-[350px] h-auto object-contain"
         />
@@ -70,12 +71,12 @@ const Register = () => {
           </button>
         </form>
 
-         <div className="text-center mt-4">
-            <span className="text-sm text-gray-700">Already have an account?</span>{' '}
-            <Link to="/login" className="text-blue-800 font-semibold hover:underline">
-              Sign In
-            </Link>
-          </div>
+        <div className="text-center mt-4">
+          <span className="text-sm text-gray-700">Already have an account?</span>{' '}
+          <Link to="/login" className="text-blue-800 font-semibold hover:underline">
+            Sign In
+          </Link>
+        </div>
       </div>
     </div>
   );

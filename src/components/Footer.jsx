@@ -12,8 +12,8 @@ const Footer = () => {
           <p className="text-xs tracking-widest mt-1">SCAN YOUR FOOD</p>
           <p className="text-xs tracking-widest">SHAPE YOUR HEALTH</p>
           <div className="flex justify-center md:justify-start space-x-3 mt-3 text-green-900">
-            <a href="#" aria-label="Instagram"><FaInstagram size={18} /></a>
-            <a href="#" aria-label="Email"><FaEnvelope size={18} /></a>
+            <a href="https://www.instagram.com/teamnutrivision?igsh=MXRkczhucW9uNzJtZg==" aria-label="Instagram"><FaInstagram size={18} /></a>
+            <a href="mailto:teamnutrivision@gmail.com" aria-label="Email"><FaEnvelope size={18} /></a>
           </div>
         </div>
 
