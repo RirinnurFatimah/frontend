@@ -72,7 +72,6 @@ const Navbar = () => {
 
       {/* Sidebar Profile */}
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-        <Footer></Footer>
     </>
   );
 };
