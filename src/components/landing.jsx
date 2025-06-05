@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Footer from './Footer'; 
 
 const Landing = () => {
   return (
@@ -44,16 +45,7 @@ const Landing = () => {
           </button>
         </Link>
       </div>
-
-      {/* Footer */}
-      <footer className="bg-[#a5d8e0] w-full text-center py-4 text-sm">
-        <div className="font-semibold text-gray-800">
-          CREATED BY <span className="text-green-800">NUTRIVISION TEAM</span>
-        </div>
-        <div className="mt-1 text-gray-700">
-          © 2025 Nutrivision by Team CC25–CF220. All rights reserved.
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

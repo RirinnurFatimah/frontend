@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaBars, FaTimes, FaUserCircle } from 'react-icons/fa';
 import Logo from '../assets/logo.jpg';
 import Sidebar from '../layout/Sidebar';
+import Footer from './Footer';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,23 +14,24 @@ const Navbar = () => {
 
   return (
     <>
+      {/* Navbar Utama */}
       <nav className="bg-[#71C9CD] shadow-md px-6 py-4 flex items-center justify-between fixed top-0 left-0 w-full z-50">
-        {/* Logo and Brand */}
+        {/* Logo dan Judul */}
         <div className="flex items-center space-x-2 text-sm font-semibold text-[#2e5e1f] uppercase">
           <img src={Logo} alt="Logo" className="h-8 w-8 rounded-full" />
           <span>NutriVision</span>
         </div>
 
-        {/* Desktop Navigation */}
+        {/* Menu Desktop */}
         <ul className="hidden md:flex space-x-6 text-white font-medium tracking-wide ml-auto items-center">
           <li><Link to="/home" className="hover:text-green-200">Home</Link></li>
           <li><Link to="/scanner" className="hover:text-green-200">Scanner</Link></li>
           <li><Link to="/BodyTrack" className="hover:text-green-200">BodyTrack</Link></li>
           <li><Link to="/NutriTrack" className="hover:text-green-200">NutriTrack</Link></li>
-          <li><Link to="/AboutTeam" className="hover:text-green-200">AboutTeam</Link></li>
+          <li><Link to="/about-team" className="hover:text-green-200">AboutTeam</Link></li>
         </ul>
 
-        {/* Account Icon */}
+        {/* Icon Profile */}
         <div className="hidden md:flex items-center space-x-4 text-white ml-6">
           <FaUserCircle
             size={24}
@@ -38,10 +40,11 @@ const Navbar = () => {
           />
         </div>
 
-        {/* Hamburger Icon */}
+        {/* Hamburger Menu */}
         <div className="md:hidden text-white" onClick={toggleMenu}>
           {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </div>
+      </nav>
 
         {/* Mobile Navigation */}
         {isOpen && (
@@ -70,8 +73,9 @@ const Navbar = () => {
 
       </nav>
 
-      {/* ✅ Sidebar harus di dalam fungsi komponen */}
+      {/* Sidebar Profile */}
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+        <Footer></Footer>
     </>
   );
 };
