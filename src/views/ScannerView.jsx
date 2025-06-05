@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 const ScannerView = () => {
   const [previewImage, setPreviewImage] = useState(null);
   const [barcode, setBarcode] = useState('');
-  const [nutritionData, setNutritionData] = useState('');
+  const [productDetails, setProductDetails] = useState("");
   const [warning, setWarning] = useState('');
   const [checks, setChecks] = useState({ sugar: false, fat: false, carbs: false });
   const [hasScanned, setHasScanned] = useState(false);
@@ -33,7 +33,7 @@ const ScannerView = () => {
 
   const handleScan = () => {
     if (!barcode) return alert('Masukkan barcode terlebih dahulu.');
-    getProductDetails(barcode, setNutritionData, setWarning, checksRef.current);
+    getProductDetails(barcode, setProductDetails, setWarning, checksRef.current);
   };
 
   const handleImageUpload = (e) => {
@@ -64,7 +64,7 @@ const ScannerView = () => {
             if (result?.codeResult?.code) {
               const scannedBarcode = result.codeResult.code;
               setBarcode(scannedBarcode);
-              getProductDetails(scannedBarcode, setNutritionData, setWarning, checksRef.current);
+              getProductDetails(scannedBarcode, setProductDetails, setWarning, checksRef.current);
             } else {
               alert('Barcode tidak ditemukan dalam gambar.');
             }
@@ -129,7 +129,7 @@ const ScannerView = () => {
           const detectedCode = data.codeResult.code;
           setHasScanned(true);
           setBarcode(detectedCode);
-          getProductDetails(detectedCode, setNutritionData, setWarning, checksRef.current);
+          getProductDetails(detectedCode, setProductDetails, setWarning, checksRef.current);
         });
 
       } catch (err) {
@@ -214,25 +214,22 @@ const ScannerView = () => {
 
         <div className="w-full max-w-4xl">
           <div className="text-left mb-4">
-            <h2 className="font-bold text-sm mb-1">Kandungan Nutrisi</h2>
-            <textarea
-              className="w-full h-[220px] p-4 mt-1 bg-red-50 rounded-md text-sm resize-none"
-              readOnly
-              value={nutritionData}
-            />
+            <h2 className="font-bold text-sm mb-1">Detail Produk</h2>
+            <div className="w-full h-[320px] p-4 mt-1 bg-red-50 rounded-md text-sm overflow-auto whitespace-pre-wrap font-mono">
+              {productDetails}
+            </div>
           </div>
 
           <div className="text-left">
             <h2 className="font-bold text-sm mb-1">Result</h2>
-            <textarea
-              className="w-full h-[160px] p-4 mt-1 bg-white rounded-md text-sm resize-none"
-              readOnly
-              value={warning}
-            />
+            <div className="w-full h-[160px] p-4 mt-1 bg-white rounded-md text-sm overflow-auto whitespace-pre-wrap font-medium text-gray-900">
+              {warning}
+            </div>
           </div>
         </div>
+
       </div>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 };

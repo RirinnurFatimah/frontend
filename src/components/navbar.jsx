@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { FaBars, FaTimes, FaUserCircle } from 'react-icons/fa';
 import Logo from '../assets/logo.jpg';
 import Sidebar from '../layout/Sidebar';
-import Footer from './Footer';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +44,6 @@ const Navbar = () => {
         <div className="md:hidden text-white" onClick={toggleMenu}>
           {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </div>
-      </nav>
 
         {/* Mobile Navigation */}
         {isOpen && (
@@ -76,7 +74,6 @@ const Navbar = () => {
 
       {/* Sidebar Profile */}
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-        <Footer></Footer>
     </>
   );
 };
