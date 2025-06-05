@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
 
 const Landing = () => {
   return (
-    <div className="min-h-screen bg-[#b2e3ea] flex flex-col items-center justify-between text-gray-800">
+    <div className="min-h-screen bg-[#A6E3E8] flex flex-col items-center justify-between text-black">
       {/* Konten Utama */}
       <div className="max-w-6xl mx-auto p-6 pt-12 flex flex-col lg:flex-row items-center gap-12">
         {/* Gambar */}
@@ -23,7 +24,7 @@ const Landing = () => {
           <p className="text-lg font-semibold mt-4">
             Scan Your Food, Shape Your Health
           </p>
-          <p className="text-justify leading-relaxed mt-4">
+          <p className="text-justify leading-relaxed mt-4 text-black/90">
             Nutrivision adalah platform cerdas yang membantu pengguna mengelola asupan nutrisi secara praktis
             melalui pemindaian makanan dengan foto atau barcode. Dengan teknologi machine learning,
             Nutrivision menganalisis kebutuhan gizi harian berdasarkan data pribadi pengguna dan memberikan
@@ -35,25 +36,16 @@ const Landing = () => {
 
       {/* Call to Action */}
       <div className="text-center mb-10 space-y-4">
-        <h2 className="text-xl font-semibold">
+        <h2 className="text-xl font-semibold text-black/90">
           Mulai hidup sehatmu sekarang bersama <span className="text-green-700 font-bold">NUTRIVISION</span>!
         </h2>
         <Link to="/login">
-          <button className="bg-green-700 text-white px-6 py-2 rounded-md hover:bg-green-800 transition">
+          <button className="bg-[#3A7D44] text-white px-6 py-2 rounded-md hover:bg-[#6ca31f] transition">
             Get Started
           </button>
         </Link>
       </div>
-
-      {/* Footer */}
-      <footer className="bg-[#a5d8e0] w-full text-center py-4 text-sm">
-        <div className="font-semibold text-gray-800">
-          CREATED BY <span className="text-green-800">NUTRIVISION TEAM</span>
-        </div>
-        <div className="mt-1 text-gray-700">
-          © 2025 Nutrivision by Team CC25–CF220. All rights reserved.
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
