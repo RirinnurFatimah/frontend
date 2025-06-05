@@ -232,6 +232,7 @@ const ScannerView = () => {
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </>
   );
 };

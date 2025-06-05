@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes, FaUserCircle } from 'react-icons/fa';
@@ -81,3 +82,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
