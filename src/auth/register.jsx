@@ -1,15 +1,36 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
-import Logo from '../assets/LOGO1.png'; 
 
 const Register = () => {
+  const [fullname, setFullname] = useState('');
+  const [email, setEmail]       = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:3000/api/v1/auth/register', {
+        username: fullname, // atau kamu mau pisah field username dan fullname?
+        email,
+        password,
+      });
+      console.log(res.data);
+      navigate('/login'); // redirect setelah berhasil
+    } catch (err) {
+      console.error(err.response?.data || err.message);
+      alert(err.response?.data?.msg || "Registration failed");
+    }
+  };
+
   return (
-    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-[#A6E3E8] px-4 py-10">
+    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-[#a0e3f0] px-4 py-10">
 
       <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
         <img
-          src={Logo}
+          src="/src/assets/LOGO1.png"
           alt="Nutrivision Logo"
           className="w-[250px] md:w-[350px] h-auto object-contain"
         />
@@ -27,13 +48,15 @@ const Register = () => {
           Create your account
         </p>
 
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="fullname" className="block mb-1 font-medium text-gray-800">Full Name</label>
             <input
               type="text"
               id="fullname"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+              value={fullname}
+              onChange={(e) => setFullname(e.target.value)}
+              className="w-full px-4 py-2 bg-gray-300 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="Your full name"
             />
           </div>
@@ -42,7 +65,9 @@ const Register = () => {
             <input
               type="email"
               id="email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-2 bg-gray-300 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="example@email.com"
             />
           </div>
@@ -51,7 +76,9 @@ const Register = () => {
             <input
               type="password"
               id="password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-2 bg-gray-300 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="Create a strong password"
             />
           </div>
@@ -71,15 +98,16 @@ const Register = () => {
           </button>
         </form>
 
-        <div className="text-center mt-4">
-          <span className="text-sm text-gray-700">Already have an account?</span>{' '}
-          <Link to="/login" className="text-blue-800 font-semibold hover:underline">
-            Sign In
-          </Link>
-        </div>
+         <div className="text-center mt-4">
+            <span className="text-sm text-gray-700">Already have an account?</span>{' '}
+            <Link to="/login" className="text-blue-800 font-semibold hover:underline">
+              Sign In
+            </Link>
+          </div>
       </div>
     </div>
   );
 };
 
 export default Register;
+

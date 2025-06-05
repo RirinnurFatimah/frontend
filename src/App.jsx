@@ -1,7 +1,7 @@
+
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Landing from './components/landing';
-import Navbar from './components/navbar';
 import Home from './components/home';
 import Scanner from './views/ScannerView';
 import BodyTrack from './views/BodyTrack';
@@ -11,14 +11,18 @@ import Login from './auth/login';
 import Register from './auth/register';
 import ForgotPassword from './auth/ForgotPassword';
 import AboutTeam from './components/AboutTeam';
+import PrivateRoute from './components/PrivateRoute'; 
 
 const App = () => {
   return (
-    <>
-      {/* <Navbar /> */}
-      <main className="">
-        <Routes>
-          <Route path="/" element={<Landing />} />
+    <main>
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        <Route element={<PrivateRoute />}>
           <Route path="/home" element={<Home />} />
           <Route path="/scanner" element={<Scanner />} />
           <Route path="/BodyTrack" element={<BodyTrack />} />
@@ -28,10 +32,11 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/about-team" element={<AboutTeam />} />
-        </Routes>
-      </main>
-    </>
+        </Route>
+      </Routes>
+    </main>
   );
 };
 
 export default App;
+
