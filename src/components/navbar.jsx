@@ -47,7 +47,14 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="absolute top-16 left-2 right-2 bg-white shadow-lg rounded-xl border border-green-200 py-6 px-4 md:hidden animate-fade-in-down z-40">
+          <div className="fixed top-0 left-0 w-64 h-full bg-[#71C9CD] text-white z-40 p-6 md:hidden shadow-lg transition-transform duration-300 ease-in-out">
+            <div className="flex justify-between items-center mb-8">
+              <div className="flex items-center space-x-2 text-sm font-semibold text-[#2e5e1f] uppercase">
+                <img src={Logo} alt="Logo" className="h-8 w-8 rounded-full" />
+                <span>NutriVision</span>
+              </div>
+              <FaTimes size={24} className="cursor-pointer" onClick={closeMenu} />
+            </div>
             <ul className="flex flex-col items-center space-y-5 text-gray-700 font-medium">
               <li><Link to="/home" onClick={closeMenu} className="hover:text-green-600">Home</Link></li>
               <li><Link to="/scanner" onClick={closeMenu} className="hover:text-green-600">Scanner</Link></li>

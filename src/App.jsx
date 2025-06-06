@@ -21,6 +21,7 @@ const App = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
         <Route element={<PrivateRoute />}>
           <Route path="/home" element={<Home />} />
@@ -28,9 +29,6 @@ const App = () => {
           <Route path="/BodyTrack" element={<BodyTrack />} />
           <Route path="/NutriTrack" element={<NutriTrack />} />
           <Route path="/NutriPages" element={<Nutri-Page />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/about-team" element={<AboutTeam />} />
         </Route>
       </Routes>

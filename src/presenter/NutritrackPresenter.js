@@ -2,26 +2,43 @@ import NutriTrackModel from "../models/nutritrackModel";
 import NutriPagesModel from "../models/NutriPagesModel";
 
 const NutriTrackPresenter = {
-  async getFoodRecommendations(inputFoodData, setLoading, setRecommendations) {
-    console.log("Presenter dipanggil dengan:", inputFoodData);
+  async handleSearchFood(query, { setLoading, setError, setInputFood, setRecommendations }) {
+    if (!query.trim()) return;
 
     setLoading(true);
+    setError(null);
+    setInputFood(null);
+    setRecommendations([]);
 
-    const recommendations = await NutriTrackModel.getRecommendation(inputFoodData);
+    try {
+      const result = await NutriTrackModel.getRecommendation(query.trim());
 
-    console.log("Rekomendasi diterima:", recommendations);
+      setInputFood(result.input_food || null);
+      setRecommendations(result.recommendations || []);
+    } catch (err) {
+      const message = err.message || "Terjadi kesalahan";
+      setError(message);
 
-    setRecommendations(recommendations);
-    setLoading(false);
+      // 👇 Coba cari saran dalam bentuk array dari string
+      const suggestionMatch = message.match(/\[(.*?)\]/); // cari array string dalam error
+      if (suggestionMatch) {
+        const suggestionList = suggestionMatch[1]
+          .split(",")
+          .map((s) => s.trim().replace(/^'|'$/g, "")); // bersihkan kutip
+
+        // kirim suggestion ke UI sebagai object { name }
+        setRecommendations(suggestionList.map((name) => ({ name })));
+        setInputFood(null); // pastikan hanya suggestions yang muncul
+      }
+    } finally {
+      setLoading(false);
+    }
   },
 
   handleSeeMore(navigate, foodName, nutritionDetail) {
-    // Simpan data detail ke model
     NutriPagesModel.setFoodDetail(foodName, nutritionDetail);
-    
-    // Navigasi ke halaman detail
     navigate("/nutritrack/detail");
-  }
+  },
 };
 
 export default NutriTrackPresenter;
