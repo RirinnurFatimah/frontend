@@ -6,10 +6,12 @@ import { FcGoogle } from 'react-icons/fc';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false); // state untuk loading
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const res = await axios.post('http://localhost:3000/api/v1/auth/login', {
@@ -17,17 +19,17 @@ const Login = () => {
         password,
       });
 
-      // Simpan token ke localStorage
       localStorage.setItem('token', res.data.token);
 
-      alert('Login berhasil!');
       navigate('/home'); // Ganti dengan route yang sesuai
     } catch (err) {
-      alert('Login gagal. Cek kembali username dan password.');
       console.error(err.response?.data || err.message);
+      alert('Login gagal. Cek kembali username dan password.');
+    } finally {
+      setLoading(false);
     }
   };
-  
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-[#a0e3f0] px-4 py-10">
       <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0 order-1 md:order-2">
@@ -68,12 +70,18 @@ const Login = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-green-700 hover:bg-green-800 text-white py-2 rounded-md transition"
-          >
-            Sign In
-          </button>
+          {loading ? (
+            <div className="w-full bg-green-600 text-white py-2 rounded-md text-center">
+              Loading...
+            </div>
+          ) : (
+            <button
+              type="submit"
+              className="w-full bg-green-700 hover:bg-green-800 text-white py-2 rounded-md transition"
+            >
+              Sign In
+            </button>
+          )}
 
           <button
             type="button"
@@ -101,4 +109,3 @@ const Login = () => {
 };
 
 export default Login;
-

@@ -7,21 +7,24 @@ const Register = () => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail]       = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading]   = useState(false); // 👈 loading state
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // 👈 mulai loading
     try {
       const res = await axios.post('http://localhost:3000/api/v1/auth/register', {
-        username: fullname, // atau kamu mau pisah field username dan fullname?
+        username: fullname,
         email,
         password,
       });
       console.log(res.data);
-      navigate('/login'); // redirect setelah berhasil
+      navigate('/login');
     } catch (err) {
       console.error(err.response?.data || err.message);
-      alert(err.response?.data?.msg || "Registration failed");
+    } finally {
+      setLoading(false); // 👈 selesai loading
     }
   };
 
@@ -85,9 +88,10 @@ const Register = () => {
 
           <button
             type="submit"
-            className="w-full bg-green-700 hover:bg-green-800 text-white py-2 rounded-md transition"
+            disabled={loading} // 👈 disable saat loading
+            className={`w-full py-2 rounded-md transition text-white ${loading ? 'bg-gray-500' : 'bg-green-700 hover:bg-green-800'}`}
           >
-            Create Account
+            {loading ? 'Loading...' : 'Create Account'} {/* 👈 ganti teks */}
           </button>
 
           <button
@@ -98,16 +102,15 @@ const Register = () => {
           </button>
         </form>
 
-         <div className="text-center mt-4">
-            <span className="text-sm text-gray-700">Already have an account?</span>{' '}
-            <Link to="/login" className="text-blue-800 font-semibold hover:underline">
-              Sign In
-            </Link>
-          </div>
+        <div className="text-center mt-4">
+          <span className="text-sm text-gray-700">Already have an account?</span>{' '}
+          <Link to="/login" className="text-blue-800 font-semibold hover:underline">
+            Sign In
+          </Link>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Register;
-
