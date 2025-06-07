@@ -15,6 +15,7 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   const [isEditingName, setIsEditingName] = useState(false);
   const [isEditingAbout, setIsEditingAbout] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -53,6 +54,7 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const token = localStorage.getItem('token');
     const formData = new FormData();
     formData.append('fullName', fullName);
@@ -68,7 +70,7 @@ const Sidebar = ({ isOpen, onClose }) => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      alert('Profil berhasil diperbarui!');
+
       setUser(res.data.user);
       setIsEditingName(false);
       setIsEditingAbout(false);
@@ -78,7 +80,8 @@ const Sidebar = ({ isOpen, onClose }) => {
       setPreviewImage(`http://localhost:3000/${imagePath}?t=${Date.now()}`);
     } catch (err) {
       console.error('Gagal update profil:', err);
-      alert('Gagal update profil');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -94,14 +97,12 @@ const Sidebar = ({ isOpen, onClose }) => {
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
-      {/* Close Button */}
       <div className="flex justify-end p-4">
         <button onClick={onClose}>
           <FaTimes size={22} className="text-gray-600 hover:text-red-500" />
         </button>
       </div>
 
-      {/* Profile Card */}
       <div className="mx-4 mb-8 bg-white rounded-2xl border border-green-300 p-6 shadow-md h-[calc(100vh-64px)] overflow-y-auto">
         <div className="text-center mb-6 border border-green-300 rounded-xl py-2">
           <h1 className="text-2xl font-extrabold text-green-800">NUTRIVISION</h1>
@@ -109,99 +110,99 @@ const Sidebar = ({ isOpen, onClose }) => {
           <p className="text-xs text-gray-500">SHAPE YOUR HEALTH</p>
         </div>
 
-        {/* Profile Image with Edit Icon */}
         <div className="border border-green-300 rounded-xl p-4 w-full box-border bg-white">
-        <div className="relative w-24 h-24 mx-auto mb-4">
-          <img
-            src={previewImage || 'https://via.placeholder.com/150'}
-            alt="Profile"
-            className="w-24 h-24 rounded-full object-cover"
-          />
-          <label htmlFor="profile-upload">
-            <div className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow cursor-pointer hover:bg-gray-100">
-              <FiEdit2 className="text-gray-700 w-4 h-4" />
-            </div>
-          </label>
-          <input
-            id="profile-upload"
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            className="hidden"
-          />
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-4 text-sm">
-          {/* Full Name */}
-          <div className="flex items-center justify-center">
-            {isEditingName ? (
-              <input
-                type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                className="w-full px-3 py-2 rounded border"
-              />
-            ) : (
-              <h2 className="text-lg font-bold">{fullName || 'Your Full Name'}</h2>
-            )}
-            <button type="button" onClick={() => setIsEditingName(!isEditingName)} className="ml-1 text-gray-600 hover:text-gray-800">
-              <FiEdit2 />
-            </button>
+          <div className="relative w-24 h-24 mx-auto mb-4">
+            <img
+              src={previewImage || 'https://via.placeholder.com/150'}
+              alt="Profile"
+              className="w-24 h-24 rounded-full object-cover"
+            />
+            <label htmlFor="profile-upload">
+              <div className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow cursor-pointer hover:bg-gray-100">
+                <FiEdit2 className="text-gray-700 w-4 h-4" />
+              </div>
+            </label>
+            <input
+              id="profile-upload"
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="hidden"
+            />
           </div>
 
-          {/* Username */}
-          <div>
-            <p className="font-bold">Username</p>
-            <p className="text-gray-500">{user.username}</p>
-          </div>
-
-          {/* Email */}
-          <div>
-            <p className="font-bold">Email</p>
-            <p className="text-blue-600 underline">{user.email}</p>
-          </div>
-
-          {/* About Me */}
-          <div>
-            <div className="flex items-center justify-between">
-              <p className="font-bold">About Me</p>
-              <button type="button" onClick={() => setIsEditingAbout(!isEditingAbout)} className="text-gray-600 hover:text-gray-800">
+          <form onSubmit={handleSubmit} className="space-y-4 text-sm">
+            <div className="flex items-center justify-center">
+              {isEditingName ? (
+                <input
+                  type="text"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  className="w-full px-3 py-2 rounded border"
+                />
+              ) : (
+                <h2 className="text-lg font-bold">{fullName || 'Your Full Name'}</h2>
+              )}
+              <button type="button" onClick={() => setIsEditingName(!isEditingName)} className="ml-1 text-gray-600 hover:text-gray-800">
                 <FiEdit2 />
               </button>
             </div>
-            {isEditingAbout ? (
-              <textarea
-                rows={3}
-                value={about}
-                onChange={(e) => setAbout(e.target.value)}
-                className="w-full px-3 py-2 rounded border mt-1"
-              />
-            ) : (
-              <p className="text-sm text-gray-700 mt-1">{about || 'No about info yet.'}</p>
+
+            <div>
+              <p className="font-bold">Username</p>
+              <p className="text-gray-500">{user.username}</p>
+            </div>
+
+            <div>
+              <p className="font-bold">Email</p>
+              <p className="text-blue-600 underline">{user.email}</p>
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between">
+                <p className="font-bold">About Me</p>
+                <button type="button" onClick={() => setIsEditingAbout(!isEditingAbout)} className="text-gray-600 hover:text-gray-800">
+                  <FiEdit2 />
+                </button>
+              </div>
+              {isEditingAbout ? (
+                <textarea
+                  rows={3}
+                  value={about}
+                  onChange={(e) => setAbout(e.target.value)}
+                  className="w-full px-3 py-2 rounded border mt-1"
+                />
+              ) : (
+                <p className="text-sm text-gray-700 mt-1">{about || 'No about info yet.'}</p>
+              )}
+            </div>
+
+            <div className="flex justify-start mb-8 mt-4">
+              <button
+                onClick={handleLogout}
+                className="flex items-center justify-center gap-2 text-red-600 hover:text-red-700 transition text-sm font-medium"
+              >
+                <FiLogOut size={18} />
+                <span>Logout</span>
+              </button>
+            </div>
+
+            {isLoading && (
+              <div className="text-center text-sm text-gray-600">Updating profile...</div>
             )}
-          </div>
 
-          {/* Logout */}
-          <div className="flex justify-start mb-8 mt-4">
             <button
-              onClick={handleLogout}
-              className="flex items-center justify-center gap-2 text-red-600 hover:text-red-700 transition text-sm font-medium"
+              type="submit"
+              className={`w-full py-2 rounded-xl transition mb-6 ${
+                isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-700 hover:bg-green-800 text-white'
+              }`}
+              disabled={isLoading}
             >
-              <FiLogOut size={18} />
-              <span>Logout</span>
+              {isLoading ? 'Saving...' : 'Save Changes'}
             </button>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-green-700 text-white py-2 rounded-xl hover:bg-green-800 transition mb-6"
-          >
-            Save Changes
-          </button>
-        </form>
-
+          </form>
+        </div>
       </div>
-    </div>
     </div>
   );
 };
