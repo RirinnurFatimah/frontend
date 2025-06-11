@@ -42,11 +42,11 @@ const Login = () => {
 
       {/* Form Login */}
       <div className="w-full md:w-1/2 px-6 md:px-16 order-2 md:order-1">
-        <h2 className="text-3xl font-bold mb-2 text-gray-800 text-center md:text-left">
+        <h2 className="text-3xl font-extrabold mb-2 text-gray-800 text-center md:text-center">
           WELCOME TO <span className="text-green-700">NUTRIVISION</span>
         </h2>
-        <p className="text-gray-700 text-lg text-center md:text-left">Scan Your Food, Shape Your Health</p>
-        <p className="text-sm text-gray-800 font-semibold mt-2 mb-6 text-center md:text-left">Login to your account</p>
+        <p className="text-gray-700 text-lg font-semibold text-center md:text-center">Scan Your Food, Shape Your Health</p>
+        <p className="text-sm text-gray-800 font-bold mt-2 mb-6 text-center md:text-center">Login to your account</p>
 
         <form className="space-y-4" onSubmit={handleLogin}>
           <div>
@@ -77,18 +77,11 @@ const Login = () => {
           ) : (
             <button
               type="submit"
-              className="w-full bg-green-700 hover:bg-green-800 text-white py-2 rounded-md transition"
+              className="w-full bg-green-700 hover:bg-green-800 text-white py-2 rounded-md transition duration-300 gap-2"
             >
               Sign In
             </button>
           )}
-
-          <button
-            type="button"
-            className="w-full flex items-center justify-center gap-2 border border-green-600 text-green-800 py-2 rounded-md hover:bg-green-100 transition"
-          >
-            Masuk Dengan Google <FcGoogle size={20} />
-          </button>
 
           <div className="text-right">
             <Link to="/forgot-password" className="text-sm text-blue-700 hover:underline">

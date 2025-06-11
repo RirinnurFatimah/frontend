@@ -6,7 +6,6 @@ import Footer from '../components/Footer';
 
 const ScannerView = () => {
   const [previewImage, setPreviewImage] = useState(null);
-  const [barcode, setBarcode] = useState('');
   const [productDetails, setProductDetails] = useState("");
   const [warning, setWarning] = useState('');
   const [checks, setChecks] = useState({ sugar: false, fat: false, carbs: false });
@@ -29,11 +28,6 @@ const ScannerView = () => {
       checksRef.current = updated; // ← update ref juga
       return updated;
     });
-  };
-
-  const handleScan = () => {
-    if (!barcode) return alert('Masukkan barcode terlebih dahulu.');
-    getProductDetails(barcode, setProductDetails, setWarning, checksRef.current);
   };
 
   const handleImageUpload = (e) => {
@@ -63,7 +57,6 @@ const ScannerView = () => {
           (result) => {
             if (result?.codeResult?.code) {
               const scannedBarcode = result.codeResult.code;
-              setBarcode(scannedBarcode);
               getProductDetails(scannedBarcode, setProductDetails, setWarning, checksRef.current);
             } else {
               alert('Barcode tidak ditemukan dalam gambar.');
@@ -128,7 +121,6 @@ const ScannerView = () => {
 
           const detectedCode = data.codeResult.code;
           setHasScanned(true);
-          setBarcode(detectedCode);
           getProductDetails(detectedCode, setProductDetails, setWarning, checksRef.current);
         });
 
@@ -187,7 +179,7 @@ const ScannerView = () => {
         ></video>
 
         <div className="flex flex-col items-center gap-4 mb-6">
-          <label className="cursor-pointer text-white bg-[#3A7D44] px-6 py-2 rounded-2xl text-sm font-bold">
+          <label className="cursor-pointer text-white bg-[#3A7D44] hover:bg-[#2F4F4F] px-6 py-2 rounded-2xl text-sm font-bold">
             Upload From Your Gallery
             <input
               type="file"
@@ -196,13 +188,6 @@ const ScannerView = () => {
               className="hidden"
             />
           </label>
-
-          <button
-            onClick={handleScan}
-            className="bg-[#3A7D44] text-white px-6 py-2 rounded-full text-sm font-bold"
-          >
-            Scan Now
-          </button>
         </div>
 
         {previewImage && (

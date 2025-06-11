@@ -113,7 +113,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         <div className="border border-green-300 rounded-xl p-4 w-full box-border bg-white">
           <div className="relative w-24 h-24 mx-auto mb-4">
             <img
-              src={previewImage || 'https://via.placeholder.com/150'}
+              src={previewImage || '/assets/Nutrivision.png'}
               alt="Profile"
               className="w-24 h-24 rounded-full object-cover"
             />
@@ -143,7 +143,7 @@ const Sidebar = ({ isOpen, onClose }) => {
               ) : (
                 <h2 className="text-lg font-bold">{fullName || 'Your Full Name'}</h2>
               )}
-              <button type="button" onClick={() => setIsEditingName(!isEditingName)} className="ml-1 text-gray-600 hover:text-gray-800">
+              <button type="button" onClick={() => setIsEditingName(!isEditingName)} className="items-center text-gray-600 hover:bg-gray-500 hover:text-white py-1 px-2 rounded">
                 <FiEdit2 />
               </button>
             </div>
@@ -161,7 +161,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             <div>
               <div className="flex items-center justify-between">
                 <p className="font-bold">About Me</p>
-                <button type="button" onClick={() => setIsEditingAbout(!isEditingAbout)} className="text-gray-600 hover:text-gray-800">
+                <button type="button" onClick={() => setIsEditingAbout(!isEditingAbout)} className="text-gray-600 hover:bg-gray-500 hover:text-white py-1 px-2 rounded">
                   <FiEdit2 />
                 </button>
               </div>
@@ -180,7 +180,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             <div className="flex justify-start mb-8 mt-4">
               <button
                 onClick={handleLogout}
-                className="flex items-center justify-center gap-2 text-red-600 hover:text-red-700 transition text-sm font-medium"
+                className="flex items-center justify-center gap-2 bg-red-700 text-white hover:bg-white hover:text-red-600 py-2 px-4 rounded transition text-sm font-medium"
               >
                 <FiLogOut size={18} />
                 <span>Logout</span>

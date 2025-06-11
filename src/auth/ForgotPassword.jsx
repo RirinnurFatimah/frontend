@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Logo from '../assets/LOGO1.png';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [newPassword, setNewPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const navigate = useNavigate(); // Hook navigate
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ email, username, newPassword });
-    // Bisa ditambah logic reset password di sini
+    setMessage('');
+    setError('');
+
+    try {
+      const res = await axios.post('http://localhost:3000/api/v1/auth/forgot-password', { email });
+      setMessage(res.data.msg); // Berhasil
+    } catch (err) {
+      setError(err.response?.data?.msg || 'Terjadi kesalahan');
+    }
   };
 
-  // Fungsi untuk tombol Cancel
   const handleCancel = () => {
-    navigate('/login'); 
+    navigate('/login');
   };
 
   return (
@@ -39,13 +45,13 @@ const ForgotPassword = () => {
 
         {/* Right Side: Form */}
         <div className="md:w-1/2 w-full">
-          <h2 className="text-2xl font-bold text-gray-800 mb-1 text-center md:text-left">
+          <h2 className="text-3xl font-extrabold text-gray-800 mb-1 text-center md:text-center">
             WELCOME TO <span className="text-green-700">NUTRIVISION</span>
           </h2>
-          <p className="text-gray-700 text-sm mb-4 text-center md:text-left">
+          <p className="text-gray-700 text-2xl font-semibold mb-4 text-center md:text-center">
             Scan Your Food, Shape Your Health
           </p>
-          <p className="text-sm text-gray-900 font-medium mb-6 text-center md:text-left">
+          <p className="text-sm text-gray-900 font-bold  mb-6 text-center md:text-center">
             Forgot Your Password?
           </p>
 
@@ -53,33 +59,20 @@ const ForgotPassword = () => {
             <input
               type="email"
               placeholder="Email"
-              className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <input
-              type="text"
-              placeholder="Username"
-              className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            <input
-              type="password"
-              placeholder="New Password"
-              className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              required
-            />
+
+            {message && <p className="text-green-600 text-sm">{message}</p>}
+            {error && <p className="text-red-600 text-sm">{error}</p>}
 
             <div className="flex justify-between items-center pt-2">
               <button
                 type="button"
-                onClick={handleCancel}  
-                className="px-4 py-2 text-gray-800 bg-white border border-gray-300 rounded-md hover:bg-gray-100"
+                onClick={handleCancel}
+                className="px-4 py-2 text-gray-800 bg-white border border-gray-300 rounded-md hover:bg-gray-100 font-semibold transition"
               >
                 Cancel
               </button>
@@ -87,7 +80,7 @@ const ForgotPassword = () => {
                 type="submit"
                 className="px-6 py-2 bg-green-700 text-white rounded-md hover:bg-green-800 font-semibold transition"
               >
-                Reset Password
+                Send Reset Link
               </button>
             </div>
           </form>

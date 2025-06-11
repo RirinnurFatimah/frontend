@@ -41,13 +41,13 @@ const Register = () => {
 
       {/* Form Register */}
       <div className="w-full md:w-1/2 px-6 md:px-16">
-        <h2 className="text-3xl font-bold mb-2 text-gray-800 text-center md:text-left">
+        <h2 className="text-3xl font-extrabold mb-2 text-gray-800 text-center ">
           WELCOME TO <span className="text-green-700">NUTRIVISION</span> 
         </h2>
-        <p className="text-gray-700 text-lg text-center md:text-left">
+        <p className="text-gray-700 font-semibold text-lg text-center ">
           Scan Your Food, Shape Your Health
         </p>
-        <p className="text-sm text-gray-800 font-semibold mt-2 mb-6 text-center md:text-left">
+        <p className="text-sm text-gray-800 font-bold mt-2 mb-6 text-center ">
           Create your account
         </p>
 
@@ -92,13 +92,6 @@ const Register = () => {
             className={`w-full py-2 rounded-md transition text-white ${loading ? 'bg-gray-500' : 'bg-green-700 hover:bg-green-800'}`}
           >
             {loading ? 'Loading...' : 'Create Account'} {/* 👈 ganti teks */}
-          </button>
-
-          <button
-            type="button"
-            className="w-full flex items-center justify-center gap-2 border border-green-600 text-green-800 py-2 rounded-md hover:bg-green-100 transition"
-          >
-            Sign up with Google <FcGoogle size={20} />
           </button>
         </form>
 

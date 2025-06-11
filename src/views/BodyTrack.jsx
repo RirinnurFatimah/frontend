@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { processBodyData } from '../presenter/BodyTrackPresenter';
 import Navbar from '../components/navbar';
-import axios from 'axios';
+import Footer from '../components/Footer';
+import { handleFormSubmit } from '../presenter/BodyTrackPresenter';
 
 const BodyTrack = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +13,7 @@ const BodyTrack = () => {
   });
 
   const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(false); // 👈 Tambah state loading
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,35 +24,9 @@ const BodyTrack = () => {
     setFormData({ ...formData, activityLevel: Number(e.target.value) });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true); // 👈 Mulai loading
-
-    const parsedData = {
-      age: Number(formData.age),
-      height_cm: Number(formData.height),
-      weight_kg: Number(formData.weight),
-      gender: formData.gender,
-      activity: Number(formData.activityLevel),
-    };
-
-    try {
-      const response = await axios.post('http://127.0.0.1:5000/predict', parsedData);
-      const data = response.data;
-
-      setResult({
-        predictedLabel: data.predicted_label,
-        predictedClass: data.predicted_class,
-      });
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      setResult({
-        predictedLabel: 'Terjadi kesalahan saat memproses data',
-        predictedClass: 'N/A',
-      });
-    } finally {
-      setLoading(false); // 👈 Selesai loading
-    }
+    handleFormSubmit(formData, setLoading, setResult); // Gunakan Presenter
   };
 
   return (
@@ -135,7 +109,7 @@ const BodyTrack = () => {
                 <input
                   type="range"
                   name="activityLevel"
-                  min="0"
+                  min="1"
                   max="4"
                   value={formData.activityLevel}
                   onChange={handleActivityChange}
@@ -204,6 +178,7 @@ const BodyTrack = () => {
           )}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

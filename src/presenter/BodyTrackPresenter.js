@@ -1,10 +1,26 @@
-import { calculateBMI, getBMICategory } from '../models/BodyTrackModel';
+// src/presenters/bodyTrackPresenter.js
+import { predictBodyStatus } from '../models/BodyTrackModel';
 
-export const processBodyData = ({ age, height, weight, gender, activityLevel }) => {
-  const bmi = calculateBMI(weight, height);
-  const category = getBMICategory(bmi);
-  return {
-    bmi: bmi.toFixed(2),
-    category,
+export const handleFormSubmit = async (formData, setLoading, setResult) => {
+  setLoading(true);
+  const parsedData = {
+    age: Number(formData.age),
+    height_cm: Number(formData.height),
+    weight_kg: Number(formData.weight),
+    gender: formData.gender,
+    activity: Number(formData.activityLevel),
   };
+
+  const response = await predictBodyStatus(parsedData);
+
+  if (response.success) {
+    setResult(response.data);
+  } else {
+    setResult({
+      predictedLabel: response.error,
+      predictedClass: 'N/A',
+    });
+  }
+
+  setLoading(false);
 };

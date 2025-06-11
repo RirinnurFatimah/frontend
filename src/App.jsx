@@ -4,23 +4,27 @@ import Landing from './components/landing';
 import Home from './components/home';
 import Scanner from './views/ScannerView';
 import BodyTrack from './views/BodyTrack';
-import NutriTrack from './pages/NutriTrack';
+import NutriTrack from './views/NutriTrack';
 import NutriPages from './pages/NutriPages';
 import Login from './auth/login';
 import Register from './auth/register';
 import ForgotPassword from './auth/ForgotPassword';
+import ResetPassword from './auth/ResetPassword';
 import AboutTeam from './components/AboutTeam';
-import PrivateRoute from './components/PrivateRoute'; 
+import PrivateRoute from './layout/PrivateRoute'; 
+import ScrollToTop from './layout/ScrollToTop';
 
 const App = () => {
   return (
     <main>
+      <ScrollToTop />
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
 
         <Route element={<PrivateRoute />}>
           <Route path="/home" element={<Home />} />

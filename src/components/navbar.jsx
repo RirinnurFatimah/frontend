@@ -17,7 +17,7 @@ const Navbar = () => {
       {/* Navbar Utama */}
       <nav className="bg-[#71C9CD] shadow-md px-6 py-4 flex items-center justify-between fixed top-0 left-0 w-full z-50">
         {/* Logo dan Judul */}
-        <div className="flex items-center space-x-2 text-sm font-semibold text-[#2e5e1f] uppercase">
+        <div className="flex items-center space-x-2 text-sm font-extrabold text-[#2e5e1f] uppercase">
           <img src={Logo} alt="Logo" className="h-8 w-8 rounded-full" />
           <span>NutriVision</span>
         </div>
@@ -60,7 +60,7 @@ const Navbar = () => {
               <li><Link to="/scanner" onClick={closeMenu} className="hover:text-green-600">Scanner</Link></li>
               <li><Link to="/BodyTrack" onClick={closeMenu} className="hover:text-green-600">BodyTrack</Link></li>
               <li><Link to="/NutriTrack" onClick={closeMenu} className="hover:text-green-600">NutriTrack</Link></li>
-              <li><Link to="/AboutTeam" onClick={closeMenu} className="hover:text-green-600">AboutTeam</Link></li>
+              <li><Link to="/about-team" onClick={closeMenu} className="hover:text-green-600">AboutTeam</Link></li>
               <li>
                 <button
                   onClick={() => {
