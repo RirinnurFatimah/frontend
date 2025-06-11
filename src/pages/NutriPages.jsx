@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar";
 import Footer from "../components/Footer";
 
 const NutriPages = () => {
@@ -27,21 +27,6 @@ const NutriPages = () => {
       navigate("/", { replace: true });
     }
   }, [location.state, navigate]);
-
-  /*
-  useEffect(() => {
-    if (food.name) {
-      setLoading(true);
-      NutriPagesPresenter.getRecommendation(food.name) // Ini memanggil API lagi
-        .then((recFood) => {
-          setRecommendations(recFood);
-          setError(null);
-        })
-        .catch((err) => setError(err.message || "Gagal mendapatkan rekomendasi"))
-        .finally(() => setLoading(false));
-    }
-  }, [food.name]);
-  */
 
   const renderNutrition = (food) => {
     if (!food) return "Tidak ada data nutrisi tersedia.";
