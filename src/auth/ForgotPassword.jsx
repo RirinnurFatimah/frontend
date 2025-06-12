@@ -58,8 +58,8 @@ const ForgotPassword = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="email"
-              placeholder="Email"
-              className="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+              placeholder="Masukkan Email Anda"
+              className="w-full px-4 py-2 rounded-md border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-400"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

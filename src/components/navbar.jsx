@@ -1,16 +1,22 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaUserCircle } from 'react-icons/fa';
 import Logo from '../assets/logo.jpg';
 import Sidebar from '../layout/Sidebar';
 
 const Navbar = () => {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+
+  const isActive = (path) =>
+    location.pathname === path
+      ? 'text-green-200 border-b-2 border-green-200 font-bold scale-105 transition-transform duration-200'
+      : 'text-white hover:text-green-100';
 
   return (
     <>
@@ -23,12 +29,12 @@ const Navbar = () => {
         </div>
 
         {/* Menu Desktop */}
-        <ul className="hidden md:flex space-x-6 text-white font-medium tracking-wide ml-auto items-center">
-          <li><Link to="/home" className="hover:text-green-200">Home</Link></li>
-          <li><Link to="/scanner" className="hover:text-green-200">Scanner</Link></li>
-          <li><Link to="/BodyTrack" className="hover:text-green-200">BodyTrack</Link></li>
-          <li><Link to="/NutriTrack" className="hover:text-green-200">NutriTrack</Link></li>
-          <li><Link to="/about-team" className="hover:text-green-200">AboutTeam</Link></li>
+        <ul className="hidden md:flex space-x-6 font-medium tracking-wide ml-auto items-center">
+          <li><Link to="/home" className={isActive('/home')}>Home</Link></li>
+          <li><Link to="/scanner" className={isActive('/scanner')}>Scanner</Link></li>
+          <li><Link to="/BodyTrack" className={isActive('/BodyTrack')}>BodyTrack</Link></li>
+          <li><Link to="/NutriTrack" className={isActive('/NutriTrack')}>NutriTrack</Link></li>
+          <li><Link to="/about-team" className={isActive('/about-team')}>AboutTeam</Link></li>
         </ul>
 
         {/* Icon Profile */}
@@ -55,13 +61,13 @@ const Navbar = () => {
               </div>
               <FaTimes size={24} className="cursor-pointer" onClick={closeMenu} />
             </div>
-            <ul className="flex flex-col items-center space-y-5 text-gray-700 font-medium">
-              <li><Link to="/home" onClick={closeMenu} className="hover:text-green-600">Home</Link></li>
-              <li><Link to="/scanner" onClick={closeMenu} className="hover:text-green-600">Scanner</Link></li>
-              <li><Link to="/BodyTrack" onClick={closeMenu} className="hover:text-green-600">BodyTrack</Link></li>
-              <li><Link to="/NutriTrack" onClick={closeMenu} className="hover:text-green-600">NutriTrack</Link></li>
-              <li><Link to="/about-team" onClick={closeMenu} className="hover:text-green-600">AboutTeam</Link></li>
-              <li>
+            <ul className="flex flex-col items-center space-y-5 font-medium">
+              <li><Link to="/home" onClick={closeMenu} className={isActive('/home')}>Home</Link></li>
+              <li><Link to="/scanner" onClick={closeMenu} className={isActive('/scanner')}>Scanner</Link></li>
+              <li><Link to="/BodyTrack" onClick={closeMenu} className={isActive('/BodyTrack')}>BodyTrack</Link></li>
+              <li><Link to="/NutriTrack" onClick={closeMenu} className={isActive('/NutriTrack')}>NutriTrack</Link></li>
+              <li><Link to="/about-team" onClick={closeMenu} className={isActive('/about-team')}>AboutTeam</Link></li>
+            <li>
                 <button
                   onClick={() => {
                     closeMenu();

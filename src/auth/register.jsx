@@ -59,7 +59,7 @@ const Register = () => {
               id="fullname"
               value={fullname}
               onChange={(e) => setFullname(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-300 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full px-4 py-2 bg-white border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="Your full name"
             />
           </div>
@@ -70,7 +70,7 @@ const Register = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-300 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full px-4 py-2 bg-white border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="example@email.com"
             />
           </div>
@@ -81,23 +81,30 @@ const Register = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-300 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full px-4 py-2 bg-white border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="Create a strong password"
             />
           </div>
 
-          <button
-            type="submit"
-            disabled={loading} // 👈 disable saat loading
-            className={`w-full py-2 rounded-md transition text-white ${loading ? 'bg-gray-500' : 'bg-green-700 hover:bg-green-800'}`}
-          >
-            {loading ? 'Loading...' : 'Create Account'} {/* 👈 ganti teks */}
-          </button>
+          <div className="w-full flex justify-center items-center">
+          {loading ? (
+            <div className="w-full  bg-green-600 text-white py-2 rounded-md text-center">
+              Loading...
+            </div>
+          ) : (
+            <button
+              type="submit"
+              className="w-30 bg-green-700 hover:bg-green-800 text-white py-2 rounded-xl transition duration-300 gap-2"
+            >
+              Sign In
+            </button>
+          )}
+          </div>
         </form>
 
         <div className="text-center mt-4">
           <span className="text-sm text-gray-700">Already have an account?</span>{' '}
-          <Link to="/login" className="text-blue-800 font-semibold hover:underline">
+          <Link to="/login" className="text-green-700 font-semibold hover:underline">
             Sign In
           </Link>
         </div>

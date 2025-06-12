@@ -17,22 +17,18 @@ const NutriTrackPresenter = {
     } catch (err) {
       const message = err.message || "Terjadi kesalahan";
 
-      // Jika error mengandung suggestion, ambil daftarnya dan JANGAN tampilkan pesan error
       if (message.includes("Apakah maksud Anda")) {
         const suggestionMatch = message.match(/\[(.*?)\]/);
         if (suggestionMatch) {
           const suggestionList = suggestionMatch[1]
             .split(",")
-            .map((s) => s.trim().replace(/^'|'$/g, "")); // hilangkan tanda kutip
+            .map((s) => s.trim().replace(/^'|'$/g, "")); 
 
-          // tampilkan sebagai suggestion
           setRecommendations(suggestionList.map((name) => ({ name, isSuggestion: true })));
-          setInputFood(null); // kosongkan inputFood agar hanya suggestions ditampilkan
-          return; // stop di sini, jangan setError
+          setInputFood(null);
+          return; 
         }
       }
-
-      // Kalau tidak ada suggestion, baru tampilkan error
       setError(message);
     } finally {
       setLoading(false);

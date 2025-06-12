@@ -53,46 +53,51 @@ const Login = () => {
             <label htmlFor="Email" className="block mb-1 font-medium text-gray-800">Email</label>
             <input
               type="email"
+              placeholder="Masukkan Email Anda"
               id="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-300 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full px-4 py-2 bg-white border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
             />
           </div>
+          
           <div>
+            <div className="flex justify-between">
             <label htmlFor="password" className="block mb-1 font-medium  text-gray-800">Password</label>
+            
+            <Link to="/forgot-password" className="text-sm text-green-700 hover:underline">
+              Forgot password?
+            </Link>
+          </div>
             <input
               type="password"
+              placeholder="Masukkan Password Anda"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-300 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full px-4 py-2 bg-white border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
             />
           </div>
 
+          <div className="w-full flex justify-center items-center">
           {loading ? (
-            <div className="w-full bg-green-600 text-white py-2 rounded-md text-center">
+            <div className="w-full  bg-green-600 text-white py-2 rounded-md text-center">
               Loading...
             </div>
           ) : (
             <button
               type="submit"
-              className="w-full bg-green-700 hover:bg-green-800 text-white py-2 rounded-md transition duration-300 gap-2"
+              className="w-30 bg-green-700 hover:bg-green-800 text-white py-2 rounded-xl transition duration-300 gap-2"
             >
               Sign In
             </button>
           )}
-
-          <div className="text-right">
-            <Link to="/forgot-password" className="text-sm text-blue-700 hover:underline">
-              Forgot password?
-            </Link>
           </div>
         </form>
 
         <p className="mt-6 text-sm text-center">
           Not a member?{' '}
-          <Link to="/register" className="text-blue-800 font-semibold hover:underline">
+          <Link to="/register" className="text-green-700 font-semibold hover:underline">
             Register Now
           </Link>
         </p>

@@ -29,7 +29,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Text */}
-      <div className="mt-6 text-center text-xs text-black max-w-4xl mx-auto tracking-tight">
+      <div className=" mb-2 text-center text-xs text-black max-w-4xl mx-auto tracking-tight">
         © 2025 Nutrivision by Team CC25-CF220. All rights reserved.
       </div>
     </footer>

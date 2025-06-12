@@ -65,7 +65,7 @@ const Homepage = () => {
         </section>
 
         {/* Feature Section */}
-        <section className="bg-[#A6E3E8] py-16 px-6 text-center">
+        <section className="bg-[#A6E3E8] py-4 px-2 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-12">
             Mengapa <span className="text-[#85C125]">NUTRIVISION</span> ?
           </h2>
@@ -108,7 +108,7 @@ const Homepage = () => {
           id="scanhome"
           className="min-h-screen flex flex-col items-center justify-center bg-[#A6E3E8] text-center px-4 space-y-20"
         >
-          <h1 className="text-6xl md:text-7xl font-extrabold text-black">
+          <h1 className="text-4xl md:text-4xl font-extrabold text-black">
             Saatnya Peduli Dengan Apa Yang Kamu Konsumsi
           </h1>
           <Link

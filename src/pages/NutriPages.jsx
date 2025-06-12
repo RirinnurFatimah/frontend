@@ -78,7 +78,7 @@ const NutriPages = () => {
       <div className="flex justify-center mb-8">
         <button
           onClick={() => navigate(-1)}
-          className="bg-green-700 text-white font-semibold py-1.5 px-4 rounded-full shadow-md transition-colors duration-200 hover:bg-green-800 text-sx">
+          className="bg-green-700 text-white font-semibold py-3 px-5 rounded-2xl shadow-md transition-colors duration-200 hover:bg-green-800 text-sx">
           Kembali
         </button>
       </div>
