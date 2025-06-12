@@ -10,18 +10,18 @@ const Landing = () => {
         {/* Gambar */}
         <div className="w-full lg:w-1/2 flex justify-center">
           <img
-            src="/src/assets/Nutrivision.jpg"
+            src="/Nutrivision.jpg"
             alt="Healthy Food"
             className="rounded-3xl w-[280px] lg:w-[350px] object-contain"
           />
         </div>
 
         {/* Teks */}
-        <div className="w-full lg:w-1/2 space-y-4 text-center lg:text-left">
-          <h1 className="text-3xl font-bold">
+        <div className="w-full lg:w-1/2 space-y-4 text-center ">
+          <h1 className="text-3xl font-extrabold">
             WELCOME TO <span className="text-green-700">NUTRIVISION</span>
           </h1>
-          <p className="text-lg font-semibold mt-4">
+          <p className="text-lg font-bold mt-4">
             Scan Your Food, Shape Your Health
           </p>
           <p className="text-justify leading-relaxed mt-4 text-black/90">

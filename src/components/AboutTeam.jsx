@@ -1,13 +1,6 @@
 import React from 'react';
 import Navbar from './navbar';
 import { FaLinkedin, FaInstagram } from 'react-icons/fa';
-import AzizunImg from '../assets/profil/Azizun_Fathin_Wahyu_Lestari.jpeg';
-import MuhammadImg from '../assets/profil/Muhammad_Tegar_Wijaya.jpeg';
-import PanjiImg from '../assets/profil/Panji_Setyadi.jpeg';
-import RensaImg from '../assets/profil/Rensa_Ayu_Lestari.jpeg';
-import RirinImg from '../assets/profil/Ririn_Nur_Fatimah.jpeg';
-import SusiImg from '../assets/profil/Susi_Angelina.jpeg';
-import LogoImg from '../assets/LOGO1.png';
 import Footer from './Footer';
 
 const teamMembers = [
@@ -15,7 +8,7 @@ const teamMembers = [
     name: 'Muhammad Tegar Wijaya',
     role: 'Machine Learning (ML)',
     university: 'Universitas Sahid Surakarta',
-    image: MuhammadImg,
+    image: "/profil/Muhammad_Tegar_Wijaya.jpeg",
     linkedin: 'https://www.linkedin.com/in/muhamad-tegar-wijaya/',
     instagram: 'https://www.instagram.com/muhamadtegarwijayaa?igsh=YXdqNzdlZjZhMmRx',
   },
@@ -23,7 +16,7 @@ const teamMembers = [
     name: 'Rensa Ayu Lestari',
     role: 'Machine Learning (ML)',
     university: 'Universitas Andalas',
-    image: RensaImg,
+    image: "/profil/Rensa_Ayu_Lestari.jpeg",
     linkedin: 'https://www.linkedin.com/in/rensa-ayu-lestari-780287300/',
     instagram: 'https://www.instagram.com/rensaayulestari?igsh=MXY3cDNudXBjejB5eA==',
   },
@@ -31,7 +24,7 @@ const teamMembers = [
     name: 'Susi Angelina',
     role: 'Machine Learning (ML)',
     university: 'Universitas Widya Dharma Pontianak',
-    image: SusiImg,
+    image: "profil/Susi_Angelina.jpeg", 
     linkedin: 'https://www.linkedin.com/in/susi-angelina/',
     instagram: 'https://www.instagram.com/03_sus',
   },
@@ -39,7 +32,7 @@ const teamMembers = [
     name: 'Panji Setyadi',
     role: 'Front-end & Back-end Engineer (FEBE)',
     university: 'Universitas Sahid Surakarta',
-    image: PanjiImg,
+    image: "/profil/Panji_Setyadi.jpeg",
     linkedin: 'https://www.linkedin.com/in/panji-setyadi-b602b7309/',
     instagram: 'https://www.instagram.com/panjisty?igsh=Mm9uNGM0cjFtb3M1',
   },
@@ -47,7 +40,7 @@ const teamMembers = [
     name: 'Azizun Fathin Wahyu Lestari',
     role: 'Front-end & Back-end Engineer (FEBE)',
     university: 'Universitas Sahid Surakarta',
-    image: AzizunImg,
+    image: "/profil/Azizun_Fathin_Wahyu_Lestari.jpeg",
     linkedin: 'https://www.linkedin.com/in/azizunfathin',
     instagram: 'https://www.instagram.com/zziefathin_',
   },
@@ -55,7 +48,7 @@ const teamMembers = [
     name: 'Ririn Nur Fatimah',
     role: 'Front-end & Back-end Engineer (FEBE)',
     university: 'Universitas Sahid Surakarta',
-    image: RirinImg,
+    image: "/profil/Ririn_Nur_Fatimah.jpeg",
     linkedin: 'https://www.linkedin.com/in/ririnnurfatimah',
     instagram: 'https://www.instagram.com/ririnnn.nf',
   },
@@ -69,7 +62,7 @@ const AboutTeam = () => {
       <section className="bg-[#A6E3E8] pt-28 pb-12 px-4 min-h-screen">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-green-700 mb-2">NUTRIVISION TEAM</h2>
-          <img src={LogoImg} alt="Nutrivision Logo" className="w-32 mx-auto my-6" />
+          <img src="/LOGO1.png" alt="Nutrivision Logo" className="w-32 mx-auto my-6" />
 
           <div className="text-gray-800 mb-10 px-2 sm:px-10">
             <h3 className="text-lg sm:text-xl font-semibold mb-2">

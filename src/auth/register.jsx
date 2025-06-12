@@ -33,7 +33,7 @@ const Register = () => {
 
       <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
         <img
-          src="/src/assets/LOGO1.png"
+          src="/LOGO1.png"
           alt="Nutrivision Logo"
           className="w-[250px] md:w-[350px] h-auto object-contain"
         />

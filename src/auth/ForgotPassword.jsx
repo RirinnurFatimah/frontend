@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Logo from '../assets/LOGO1.png';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -33,7 +32,7 @@ const ForgotPassword = () => {
         {/* Left Side: Logo + Text */}
         <div className="md:w-1/2 flex flex-col justify-center items-center text-center">
           <img
-            src={Logo}
+            src="/LOGO1.png"
             alt="Nutrivision Logo"
             className="w-[250px] md:w-[350px] h-auto object-contain"
           />
