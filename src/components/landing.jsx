@@ -10,7 +10,7 @@ const Landing = () => {
         {/* Gambar */}
         <div className="w-full lg:w-1/2 flex justify-center">
           <img
-            src="/src/assets/Nutrivision.jpg"
+            src="/Nutrivision.jpg"
             alt="Healthy Food"
             className="rounded-3xl w-[280px] lg:w-[350px] object-contain"
           />
