@@ -2,40 +2,34 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './navbar';
 import Footer from './Footer';
-import Img_1 from '../assets/img/img_1.jpg';
-import Img_2 from '../assets/img/img_2.jpg';
-import Img_3 from '../assets/img/img_3.jpg';
-import Img_4 from '../assets/img/img_4.jpg';
-import Img_5 from '../assets/img/img_5.jpg';
-import Img_6 from '../assets/img/img_6.jpg';
 
 const Homepage = () => {
   const featuresWhy = [
     {
-      img: Img_1,
+      img: "/img/img_1.jpg",
       text: 'Banyak orang kesulitan mengatur asupan nutrisi harian secara efektif.',
     },
     {
-      img: Img_2,
+      img: "/img/img_2.jpg",
       text: 'Informasi gizi pada makanan kemasan sering kali tidak jelas atau membingungkan.',
     },
     {
-      img: Img_3,
+      img: "/img/img_3.jpg",
       text: 'Sulit menentukan porsi makan yang sesuai dengan tujuan—baik itu menurunkan berat badan, menjaga, atau menambah massa tubuh.',
     }
   ];
 
   const featuresHow = [
     {
-      img: Img_4,
+      img: "/img/img_4.jpg",
       text: 'Scan makanan anda lihat apakah makanan tersebut baik untuk anda',
     },
     {
-      img: Img_5,
+      img: "/img/img_5.jpg",
       text: 'Input data pribadi -> Sistem akan deteksi berat badan anda',
     },
     {
-      img: Img_6,
+      img: "/img/img_6.jpg",
       text: 'Sistem juga akan merekomendasikan makanan sesuai dengan kebutuhan nutrisi anda',
     }
   ];
