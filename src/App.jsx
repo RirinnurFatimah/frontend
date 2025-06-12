@@ -13,6 +13,8 @@ import ResetPassword from './auth/ResetPassword';
 import AboutTeam from './components/AboutTeam';
 import PrivateRoute from './layout/PrivateRoute'; 
 import ScrollToTop from './layout/ScrollToTop';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
@@ -35,6 +37,11 @@ const App = () => {
           <Route path="/about-team" element={<AboutTeam />} />
         </Route>
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        theme="colored" // warna otomatis sesuai status
+      />
     </main>
   );
 };

@@ -3,6 +3,8 @@ import { FaTimes } from 'react-icons/fa';
 import { FiLogOut, FiEdit2 } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Sidebar = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
@@ -78,8 +80,10 @@ const Sidebar = ({ isOpen, onClose }) => {
 
       const imagePath = res.data.user.profileImage?.replace(/\\/g, '/').replace(/^public\//, '');
       setPreviewImage(`https://backend-production-6bda.up.railway.app/${imagePath}?t=${Date.now()}`);
+      toast.success('✅ Profil berhasil diperbarui!');
     } catch (err) {
       console.error('Gagal update profil:', err);
+      toast.error('❌ Gagal memperbarui profil. Silakan coba lagi.');
     } finally {
       setIsLoading(false);
     }

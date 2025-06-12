@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { FcGoogle } from 'react-icons/fc';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false); // state untuk loading
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -21,10 +22,11 @@ const Login = () => {
 
       localStorage.setItem('token', res.data.token);
 
-      navigate('/home'); // Ganti dengan route yang sesuai
+      toast.success('✅ Login berhasil!');
+      setTimeout(() => navigate('/home'), 2000);
     } catch (err) {
-      console.error(err.response?.data || err.message);
-      alert('Login gagal. Cek kembali username dan password.');
+      const msg = err.response?.data?.msg || '❌ Login gagal. Cek email dan password.';
+      toast.error(msg);
     } finally {
       setLoading(false);
     }
@@ -40,7 +42,6 @@ const Login = () => {
         />
       </div>
 
-      {/* Form Login */}
       <div className="w-full md:w-1/2 px-6 md:px-16 order-2 md:order-1">
         <h2 className="text-3xl font-extrabold mb-2 text-gray-800 text-center md:text-center">
           WELCOME TO <span className="text-green-700">NUTRIVISION</span>
@@ -63,12 +64,11 @@ const Login = () => {
           
           <div>
             <div className="flex justify-between">
-            <label htmlFor="password" className="block mb-1 font-medium  text-gray-800">Password</label>
-            
-            <Link to="/forgot-password" className="text-sm text-green-700 hover:underline">
-              Forgot password?
-            </Link>
-          </div>
+              <label htmlFor="password" className="block mb-1 font-medium text-gray-800">Password</label>
+              <Link to="/forgot-password" className="text-sm text-green-700 hover:underline">
+                Forgot password?
+              </Link>
+            </div>
             <input
               type="password"
               placeholder="Masukkan Password Anda"
@@ -80,18 +80,18 @@ const Login = () => {
           </div>
 
           <div className="w-full flex justify-center items-center">
-          {loading ? (
-            <div className="w-full  bg-green-600 text-white py-2 rounded-md text-center">
-              Loading...
-            </div>
-          ) : (
-            <button
-              type="submit"
-              className="w-30 bg-green-700 hover:bg-green-800 text-white py-2 rounded-xl transition duration-300 gap-2"
-            >
-              Sign In
-            </button>
-          )}
+            {loading ? (
+              <div className="w-full bg-green-600 text-white py-2 rounded-md text-center">
+                Loading...
+              </div>
+            ) : (
+              <button
+                type="submit"
+                className="w-30 bg-green-700 hover:bg-green-800 text-white py-2 rounded-xl transition duration-300 gap-2"
+              >
+                Sign In
+              </button>
+            )}
           </div>
         </form>
 
