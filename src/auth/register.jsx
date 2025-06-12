@@ -24,7 +24,7 @@ const Register = () => {
     } catch (err) {
       console.error(err.response?.data || err.message);
     } finally {
-      setLoading(false); // 👈 selesai loading
+      setLoading(false); 
     }
   };
 
