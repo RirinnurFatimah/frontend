@@ -1,6 +1,6 @@
 const NutriTrackModel = {
   async getRecommendation(foodName) {
-    const response = await fetch("http://localhost:5000/recommend", {
+    const response = await fetch("https://web-production-165e2.up.railway.app/recommend", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

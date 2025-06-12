@@ -14,7 +14,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:3000/api/v1/auth/login', {
+      const res = await axios.post('https://backend-production-6bda.up.railway.app/api/v1/auth/login', {
         email,
         password,
       });

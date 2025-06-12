@@ -14,7 +14,7 @@ const Register = () => {
     e.preventDefault();
     setLoading(true); // 👈 mulai loading
     try {
-      const res = await axios.post('http://localhost:3000/api/v1/auth/register', {
+      const res = await axios.post('https://backend-production-6bda.up.railway.app/api/v1/auth/register', {
         username: fullname,
         email,
         password,

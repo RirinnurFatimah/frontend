@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const predictBodyStatus = async (parsedData) => {
   try {
-    const response = await axios.post('http://127.0.0.1:5000/predict', parsedData);
+    const response = await axios.post('https://web-production-165e2.up.railway.app/predict', parsedData);
     return {
       success: true,
       data: {

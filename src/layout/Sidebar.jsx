@@ -21,7 +21,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:3000/api/v1/user/me', {
+        const res = await axios.get('https://backend-production-6bda.up.railway.app/api/v1/user/me', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -37,7 +37,7 @@ const Sidebar = ({ isOpen, onClose }) => {
           if (updatedImage.startsWith('public/')) {
             updatedImage = updatedImage.replace(/^public\//, '');
           }
-          setPreviewImage(`http://localhost:3000/${updatedImage}?t=${Date.now()}`);
+          setPreviewImage(`https://backend-production-6bda.up.railway.app/${updatedImage}?t=${Date.now()}`);
         }
       } catch (err) {
         console.error('Failed to fetch user:', err);
@@ -64,7 +64,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     }
 
     try {
-      const res = await axios.put('http://localhost:3000/api/v1/user/me', formData, {
+      const res = await axios.put('https://backend-production-6bda.up.railway.app/api/v1/user/me', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
@@ -77,7 +77,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       setProfileImage(null);
 
       const imagePath = res.data.user.profileImage?.replace(/\\/g, '/').replace(/^public\//, '');
-      setPreviewImage(`http://localhost:3000/${imagePath}?t=${Date.now()}`);
+      setPreviewImage(`https://backend-production-6bda.up.railway.app/${imagePath}?t=${Date.now()}`);
     } catch (err) {
       console.error('Gagal update profil:', err);
     } finally {
